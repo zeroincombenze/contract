@@ -18,5 +18,5 @@
     'data': [
         'views/account_analytic_invoice_line_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

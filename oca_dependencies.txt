@@ -1,4 +1,4 @@
-account-analytic
+account-analytic https://github.com/OCA/account-analytic
 bank-payment
 sale-workflow
 web
