@@ -4,19 +4,20 @@
 {
     'name': 'Agreement Service Profile',
     'summary': "Adds an Agreement Service Profile object",
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.1',
     'category': 'Contract',
     'author': 'Pavlov Media, '
               'Open Source Integrators, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/oca/contract',
+    'website': 'https://github.com/OCA/contract',
     'license': 'AGPL-3',
     'depends': ['agreement_legal'],
     'data': [
         'data/serviceprofile_stage.xml',
         'security/ir.model.access.csv',
+        'views/product.xml',
         'views/agreement_serviceprofile.xml',
-        'views/agreement.xml'
+        'views/agreement.xml',
     ],
     'development_status': 'Beta',
     'maintainers': [

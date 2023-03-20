@@ -4,19 +4,22 @@
 {
     'name': 'Agreement Sale',
     'summary': "Agreement on sales",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.2',
     'category': 'Contract',
     'author': 'Akretion, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/oca/contract',
+    'website': 'https://github.com/OCA/contract',
     'license': 'AGPL-3',
     'depends': [
         'sale_management',
-        'agreement',
+        'agreement_account',
+        'sale_commercial_partner',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/agreement.xml',
+        'views/sale_order.xml',
+        'views/res_config_settings.xml',
         ],
     'development_status': 'Beta',
     'maintainers': [

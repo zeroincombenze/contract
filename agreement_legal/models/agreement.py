@@ -5,16 +5,10 @@ from odoo import _, api, fields, models
 
 
 class Agreement(models.Model):
-    _name = "agreement"
-    _inherit = ["agreement", "mail.thread"]
+    _inherit = "agreement"
 
     # General
     name = fields.Char(string="Title", required=True)
-    is_template = fields.Boolean(
-        string="Is a Template?",
-        default=False,
-        copy=False,
-        help="Make this agreement a template.")
     version = fields.Integer(
         string="Version",
         default=1,
@@ -134,6 +128,8 @@ class Agreement(models.Model):
     use_parties_content = fields.Boolean(
         string="Use parties content",
         help="Use custom content for parties")
+    company_partner_id = fields.Many2one(
+        related="company_id.partner_id", string="Company's Partner")
 
     def _get_default_parties(self):
         deftext = """
@@ -170,10 +166,8 @@ class Agreement(models.Model):
         string="Dynamic Parties",
         help="Compute dynamic parties")
     agreement_type_id = fields.Many2one(
-        "agreement.type",
-        string="Agreement Type",
         track_visibility="onchange",
-        help="Select the type of agreement.")
+    )
     agreement_subtype_id = fields.Many2one(
         "agreement.subtype",
         string="Agreement Sub-type",
@@ -351,7 +345,7 @@ class Agreement(models.Model):
             "stage_id": self.env.ref("agreement_legal.agreement_stage_new").id,
         }
         res = self.copy(default=default_vals)
-        res.sections_ids.clauses_ids.write({'agreement_id': res.id})
+        res.sections_ids.mapped('clauses_ids').write({'agreement_id': res.id})
         return {
             "res_model": "agreement",
             "type": "ir.actions.act_window",
@@ -374,5 +368,8 @@ class Agreement(models.Model):
     # Increments the revision on each save action
     @api.multi
     def write(self, vals):
-        vals["revision"] = self.revision + 1
-        return super(Agreement, self).write(vals)
+        res = True
+        for rec in self:
+            vals["revision"] = rec.revision + 1
+            res = super(Agreement, rec).write(vals)
+        return res

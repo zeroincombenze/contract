@@ -1,5 +1,5 @@
 ================================
-Contracts Management - Recurring
+Recurring - Contracts Management
 ================================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -30,6 +30,8 @@ invoicing functions. Also you can print and send by email contract report.
 
 It works for customer contract and supplier contracts.
 
+Contracts are shown in portal.
+
 **Table of contents**
 
 .. contents::
@@ -41,42 +43,48 @@ Configuration
 To view discount field in contract line, you need to set *Discount on lines* in
 user access rights.
 
+Contracts can be viewed on the portal (list and detail) if the user logged into the portal is a follower of the contract.
+
 Usage
 =====
 
-To use this module, you need to:
+#. Contracts are in Invoicing -> Customers -> Customer and Invoicing -> Vendors -> Supplier Contracts
+#. When creating a contract, fill fields for selecting the invoicing parameters:
 
-#. Go to Accounting -> Contracts and select or create a new contract.
-#. Check *Generate recurring invoices automatically*.
-#. Fill fields for selecting the recurrency and invoice parameters:
+   * a journal
+   * a price list (optional)
 
-   * Journal
-   * Pricelist
-   * Period. It can be any interval of days, weeks, months, months last day or
-     years.
-   * Start date and next invoice date.
-   * Invoicing type: pre-paid or post-paid.
+#. And add the lines to be invoiced with:
 
-#. Add the lines to be invoiced with the product, description, quantity and
-   price.
-#. You can mark Auto-price? for having a price automatically obtained applying
-   the pricelist to the product price.
-#. You have the possibility to use the markers #START# or #END# in the
-   description field to show the start and end date of the invoiced period.
-#. Choosing between pre-paid and post-paid, you modify the dates that are shown
-   with the markers.
-#. A cron is created with daily interval, but if you are in debug mode, you can
-   click on *Create invoices* to force this action.
-#. Click *Show recurring invoices* link to show all invoices created by the
+   * the product with a description, a quantity and a price
+   * the recurrence parameters: interval (days, weeks, months, months last day or years),
+     start date, date of next invoice (automatically computed, can be modified) and end date (optional)
+   * auto-price, for having a price automatically obtained from the price list
+   * #START# or #END# in the description field to display the start/end date of
+     the invoiced period in the invoice line description
+   * pre-paid (invoice at period start) or post-paid (invoice at start of next period)
+
+#. The "Generate Recurring Invoices from Contracts" cron runs daily to generate the invoices.
+   If you are in debug mode, you can click on the invoice creation button.
+#. The *Show recurring invoices* shortcut on contracts shows all invoices created from the
    contract.
-#. Click on *Print > Contract* menu to print contract report.
-#. Click on *Send by Email* button to send contract by email.
+#. The contract report can be printed from the Print menu
+#. The contract can be sent by email with the *Send by Email* button
+#. Contract templates can be created from the Configuration -> Contracts -> Contract Templates menu.
+   They allow to define default journal, price list and lines when creating a contract.
+   To use it, just select the template on the contract and fields will be filled automatically.
+
+* Contracts appear in portal to following users in every contract:
+
+.. image:: https://raw.githubusercontent.com/OCA/contract/12.0/contract/static/src/screenshots/portal-my.png
+.. image:: https://raw.githubusercontent.com/OCA/contract/12.0/contract/static/src/screenshots/portal-list.png
+.. image:: https://raw.githubusercontent.com/OCA/contract/12.0/contract/static/src/screenshots/portal-detail.png
 
 Known issues / Roadmap
 ======================
 
 * Recover states and others functional fields in Contracts.
-
+* Remove ``models/ir_ui_view.py`` in v13, where the workaround it contains is supported upstream.
 
 Bug Tracker
 ===========
@@ -101,13 +109,21 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
-* Carlos Dauden <carlos.dauden@tecnativa.com>
 * Angel Moya <angel.moya@domatix.com>
 * Dave Lasley <dave@laslabs.com>
-* Vicent Cubells <vicent.cubells@tecnativa.com>
 * Miquel Raïch <miquel.raich@eficent.com>
 * Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+* Thomas Binsfeld <thomas.binsfeld@acsone.eu>
+* Guillaume Vandamme <guillaume.vandamme@acsone.eu>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+    * Pedro M. Baeza
+    * Carlos Dauden
+    * Vicent Cubells
+    * Rafael Blasco
+    * Víctor Martínez
 
 Maintainers
 ~~~~~~~~~~~
