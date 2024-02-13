@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* contract_variable_qty_timesheet
+# 	* contract_variable_qty_timesheet
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-12 03:43+0000\n"
+"PO-Revision-Date: 2022-10-12 03:42+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -24,9 +24,9 @@ msgstr "Mesmo Produto Analítico"
 #. module: contract_variable_qty_timesheet
 #: model:contract.line.qty.formula,name:contract_variable_qty_timesheet.contract_line_qty_formula_project_timesheet
 msgid "Project Timesheets"
-msgstr "Apontamentos de Horas de Projeto"
+msgstr "Apontamentos de horas do Projeto"
 
 #. module: contract_variable_qty_timesheet
 #: model:contract.line.qty.formula,name:contract_variable_qty_timesheet.contract_line_qty_formula_task_timesheet
 msgid "Task Timesheets"
-msgstr "Apontamentos de horas de Tarefa"
+msgstr "Planilhas de Tempo da Tarefa"
